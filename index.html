@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RAHUMAN — Designer · Developer · PM</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body>
+
+<!-- AUDIO BUTTON -->
+<div id="audioBtn" title="Toggle Sound">
+  <span class="audio-icon">♪</span>
+  <span class="audio-label">SOUND OFF</span>
+</div>
+
+<!-- THEME TOGGLE -->
+<div id="themeToggle" title="Toggle Theme">
+  <span id="themeIcon">☀</span>
+  <span id="themeLabel">LIGHT</span>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scrollBar"><div id="scrollFill"></div></div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursorOuter"></div>
+<div id="cursorInner"></div>
+<div id="cursorLabel"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-wrap">
+    <div class="pre-jp" id="preJp">ラフマン</div>
+    <div class="pre-en" id="preEn">RAHUMAN</div>
+    <div class="pre-bar"><div class="pre-fill" id="preFill"></div></div>
+    <div class="pre-pct" id="prePct">0%</div>
+  </div>
+  <div class="pre-corner pre-tl">TL</div>
+  <div class="pre-corner pre-tr">01</div>
+  <div class="pre-corner pre-bl">2025</div>
+  <div class="pre-corner pre-br">◼</div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#hero" class="nav-brand">
+    <span class="nb-jp">ラ</span><span class="nb-dot">·</span><span class="nb-en">RAHUMAN</span>
+  </a>
+  <div class="nav-ticker" id="navTicker">
+    <div class="ticker-inner">
+      <span>Designer &nbsp;·&nbsp; Developer &nbsp;·&nbsp; Product Manager &nbsp;·&nbsp; Bengaluru, India &nbsp;·&nbsp; 45+ Clients &nbsp;·&nbsp; 3+ Years &nbsp;·&nbsp;&nbsp;</span>
+      <span aria-hidden="true">Designer &nbsp;·&nbsp; Developer &nbsp;·&nbsp; Product Manager &nbsp;·&nbsp; Bengaluru, India &nbsp;·&nbsp; 45+ Clients &nbsp;·&nbsp; 3+ Years &nbsp;·&nbsp;&nbsp;</span>
+    </div>
+  </div>
+  <ul class="nav-menu" id="navMenu">
+    <li><a href="#about" class="nm-item"><span class="nm-jp">について</span><span class="nm-en">ABOUT</span></a></li>
+    <li><a href="#projects" class="nm-item"><span class="nm-jp">作品</span><span class="nm-en">WORK</span></a></li>
+    <li><a href="#skills" class="nm-item"><span class="nm-jp">技術</span><span class="nm-en">SKILLS</span></a></li>
+    <li><a href="#clients" class="nm-item"><span class="nm-jp">信頼</span><span class="nm-en">CLIENTS</span></a></li>
+    <li><a href="#testimonials" class="nm-item"><span class="nm-jp">推薦</span><span class="nm-en">REVIEWS</span></a></li>
+    <li><a href="#contact" class="nm-item"><span class="nm-jp">連絡</span><span class="nm-en">CONTACT</span></a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE OVERLAY -->
+<div id="mobileOverlay">
+  <ul class="mo-list">
+    <li><a href="#about" class="mo-link">About<em>について</em></a></li>
+    <li><a href="#projects" class="mo-link">Work<em>作品</em></a></li>
+    <li><a href="#skills" class="mo-link">Skills<em>技術</em></a></li>
+    <li><a href="#clients" class="mo-link">Clients<em>信頼</em></a></li>
+    <li><a href="#testimonials" class="mo-link">Reviews<em>推薦</em></a></li>
+    <li><a href="#contact" class="mo-link">Contact<em>連絡</em></a></li>
+  </ul>
+  <div class="mo-footer">Bengaluru · India · 2025</div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" class="s-hero">
+  <div class="hero-bg" id="heroBg">
+    <div class="hbg-grid"></div>
+    <div class="hbg-slash"></div>
+    <div class="hbg-orb o1"></div>
+    <div class="hbg-orb o2"></div>
+    <div class="hbg-noise"></div>
+  </div>
+
+  <div class="hero-side-l"><span class="vt">PORTFOLIO · 2025</span></div>
+  <div class="hero-side-r"><span class="vt">ラフマン · デザイナー</span></div>
+
+  <div class="hero-core" id="heroCore">
+    <div class="hero-stamp" id="heroStamp">
+      <div class="hs-jp">ラフマン</div>
+      <div class="hs-en">ABDUL RAHUMAN</div>
+    </div>
+
+    <h1 class="hero-h1" id="heroH1">
+      <span class="h1w" id="w1">DESIGNER</span>
+      <span class="h1w h1-orange" id="w2">&amp; DEVELOPER</span>
+      <span class="h1w h1-thin" id="w3">PRODUCT THINKER.</span>
+    </h1>
+
+    <div class="hero-ticker-wrap">
+      <div class="hero-ticker" id="heroTicker">
+        <div class="ht-inner">
+          <span>Full-Stack Developer</span><span class="sep">·</span>
+          <span>Product Manager</span><span class="sep">·</span>
+          <span>UI/UX Designer</span><span class="sep">·</span>
+          <span>Flutter Engineer</span><span class="sep">·</span>
+          <span>SaaS Builder</span><span class="sep">·</span>
+          <span>Full-Stack Developer</span><span class="sep">·</span>
+          <span>Product Manager</span><span class="sep">·</span>
+          <span>UI/UX Designer</span><span class="sep">·</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-actions" id="heroActions">
+      <a href="#projects" class="btn-orange">
+        <span>VIEW WORK</span>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="hero-badge">
+        <div class="badge-pulse"></div>
+        <span>45+ Clients · 3+ Yrs · 100% Satisfied</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-cue" id="scrollCue">
+    <div class="sc-line"></div><span>SCROLL</span><div class="sc-line"></div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="s-about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="ag-left">
+        <div class="stag reveal">
+          <span class="stag-num">01</span>
+          <span class="stag-jp">について</span>
+          <span class="stag-en">ABOUT</span>
+        </div>
+        <div class="about-imgbox reveal">
+          <img
+            src="https://rahuman122003.github.io/portfolio/assets/img/aboutasr.jpg"
+            alt="Abdul Rahuman"
+            class="about-photo"
+            id="aboutPhoto"
+            onerror="this.src='https://placehold.co/480x600/171717/F25623?text=AR'"
+          />
+          <div class="aib-accent"></div>
+          <div class="aib-label">
+            <span class="aib-co">PROBIZ TECHNOLOGIES</span>
+            <span class="aib-role">Product Manager</span>
+          </div>
+          <!-- Rotating badge -->
+          <div class="aib-badge">
+            <svg viewBox="0 0 120 120" class="badge-svg">
+              <path id="bp" d="M 60,60 m -46,0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0"/>
+              <text font-size="11" fill="currentColor" letter-spacing="3">
+                <textPath href="#bp">Designer · Developer · PM · Designer ·</textPath>
+              </text>
+            </svg>
+            <span class="badge-star">✦</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ag-right">
+        <div class="about-title-stack">
+          <span class="ats-line reveal-line">Building things</span>
+          <span class="ats-line ats-orange reveal-line">that move people.</span>
+          <span class="ats-line ats-thin reveal-line">Pixels to products.</span>
+        </div>
+        <p class="about-p reveal">
+          I'm a <strong>Product Designer and Full-Stack Developer</strong> with 3+ years crafting mobile apps, web platforms, and SaaS products for clients across the <strong>US, UAE, Europe, Malaysia and India.</strong>
+        </p>
+        <p class="about-p reveal">
+          Currently driving strategy as <strong>Product Manager at Probiz Technologies, Bengaluru</strong> — translating vision into shipped products every single day.
+        </p>
+        <div class="about-mini-stats reveal">
+          <div class="ams"><span class="ams-n">45+</span><span class="ams-l">Clients</span></div>
+          <div class="ams-div"></div>
+          <div class="ams"><span class="ams-n">3+</span><span class="ams-l">Years</span></div>
+          <div class="ams-div"></div>
+          <div class="ams"><span class="ams-n">100%</span><span class="ams-l">Satisfaction</span></div>
+        </div>
+        <a href="#contact" class="btn-outline reveal">
+          <span>LET'S COLLABORATE</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section id="stats" class="s-stats">
+  <div class="stats-bg-marquee" aria-hidden="true">
+    <div class="sbm-inner">
+      IMPACT · QUALITY · DELIVERY · TRUST · IMPACT · QUALITY · DELIVERY · TRUST · IMPACT · QUALITY ·&nbsp;
+    </div>
+  </div>
+  <div class="container">
+    <div class="stats-row">
+      <div class="sblock reveal"><div class="sbn" data-t="45">0</div><div class="sbs">+</div><div class="sbl">Global Clients</div></div>
+      <div class="sblock reveal"><div class="sbn" data-t="3">0</div><div class="sbs">+</div><div class="sbl">Years Active</div></div>
+      <div class="sblock reveal"><div class="sbn" data-t="100">0</div><div class="sbs">%</div><div class="sbl">Satisfaction</div></div>
+      <div class="sblock reveal"><div class="sbn" data-t="20">0</div><div class="sbs">+</div><div class="sbl">Live Products</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects" class="s-projects">
+  <div class="container">
+    <div class="stag reveal">
+      <span class="stag-num">02</span>
+      <span class="stag-jp">作品集</span>
+      <span class="stag-en">SELECTED WORK</span>
+    </div>
+    <h2 class="sec-h reveal">
+      <span class="sh-norm">Crafted</span>
+      <span class="sh-orange">Projects.</span>
+    </h2>
+  </div>
+  <div class="proj-outer" id="projOuter">
+    <div class="proj-inner" id="projInner">
+
+      <article class="pcard" data-cur="VIEW">
+        <div class="pc-imgw">
+          <img src="https://rahuman122003.github.io/portfolio/assets/img/ecom.png" alt="Modamate" class="pc-img" onerror="this.src='https://placehold.co/560x360/171717/F25623?text=E-Commerce'"/>
+          <div class="pc-n">01</div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-type">WEBSITE</span>
+          <h3 class="pc-title">Modamate E-Commerce</h3>
+          <p class="pc-desc">Fashion platform — timeless style, effortless discovery.</p>
+          <div class="pc-links"><a href="https://github.com/Rahuman122003" target="_blank">GitHub ↗</a><a href="https://dribbble.com/shots/25406010-MODAMATE-an-E-commerce-Site" target="_blank">Dribbble ↗</a></div>
+        </div>
+      </article>
+
+      <article class="pcard pcard-lit" data-cur="VIEW">
+        <div class="pc-imgw">
+          <img src="https://rahuman122003.github.io/portfolio/assets/img/1.jpg" alt="Flight" class="pc-img" onerror="this.src='https://placehold.co/560x360/F25623/171717?text=Flight+App'"/>
+          <div class="pc-n">02</div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-type">MOBILE APP</span>
+          <h3 class="pc-title">Flight Booking App</h3>
+          <p class="pc-desc">Browse, compare, book. Stress-free journeys begin here.</p>
+          <div class="pc-links"><a href="https://github.com/Rahuman122003" target="_blank">GitHub ↗</a><a href="https://dribbble.com/shots/25405877-Flight-Booking-Apk-Mockupus" target="_blank">Dribbble ↗</a></div>
+        </div>
+      </article>
+
+      <article class="pcard" data-cur="VIEW">
+        <div class="pc-imgw">
+          <img src="https://rahuman122003.github.io/portfolio/assets/img/ola.jpg" alt="Ola" class="pc-img" onerror="this.src='https://placehold.co/560x360/171717/F25623?text=Ola+Electric'"/>
+          <div class="pc-n">03</div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-type">MOBILE APP</span>
+          <h3 class="pc-title">Ola Electric Bike</h3>
+          <p class="pc-desc">Comprehensive EV management at the frontier of modern design.</p>
+          <div class="pc-links"><a href="https://github.com/Rahuman122003" target="_blank">GitHub ↗</a><a href="https://dribbble.com/shots/25407918-OLA-Electric-Bike-App" target="_blank">Dribbble ↗</a></div>
+        </div>
+      </article>
+
+      <article class="pcard" data-cur="VIEW">
+        <div class="pc-imgw">
+          <img src="https://rahuman122003.github.io/portfolio/assets/img/rest.png" alt="Restaurant" class="pc-img" onerror="this.src='https://placehold.co/560x360/171717/F25623?text=Restaurant'"/>
+          <div class="pc-n">04</div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-type">PRODUCT DESIGN</span>
+          <h3 class="pc-title">Restaurant Identity</h3>
+          <p class="pc-desc">Sophisticated brand mark — minimalist, lasting, elegant.</p>
+          <div class="pc-links"><a href="https://github.com/Rahuman122003" target="_blank">GitHub ↗</a><a href="https://dribbble.com/shots/25405320-A-Biriyani-Restaurant-logo" target="_blank">Dribbble ↗</a></div>
+        </div>
+      </article>
+
+      <article class="pcard pcard-lit" data-cur="VIEW">
+        <div class="pc-imgw">
+          <img src="https://rahuman122003.github.io/portfolio/assets/img/clean shot.png" alt="Clean UI" class="pc-img" onerror="this.src='https://placehold.co/560x360/F25623/171717?text=Clean+UI'"/>
+          <div class="pc-n">05</div>
+        </div>
+        <div class="pc-body">
+          <span class="pc-type">UI/UX DESIGN</span>
+          <h3 class="pc-title">Clean & Shot UI</h3>
+          <p class="pc-desc">Distraction-free interface — space, branding, effortless nav.</p>
+          <div class="pc-links"><a href="https://github.com/Rahuman122003" target="_blank">GitHub ↗</a><a href="https://dribbble.com/shots/25406051-Error-Page-UI-with-Clean-Shot" target="_blank">Dribbble ↗</a></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  <p class="proj-hint reveal">← DRAG TO EXPLORE →</p>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills" class="s-skills">
+  <div class="container">
+    <div class="stag reveal">
+      <span class="stag-num">03</span>
+      <span class="stag-jp">専門技術</span>
+      <span class="stag-en">EXPERTISE</span>
+    </div>
+    <div class="skills-layout">
+      <div class="sl-left">
+        <h2 class="sec-h reveal"><span class="sh-norm">Tools of</span><span class="sh-orange">the trade.</span></h2>
+        <div class="srv-grid reveal">
+          <div class="sg-item"><span class="sgi-code">APP</span><span>App Dev</span></div>
+          <div class="sg-item"><span class="sgi-code">WEB</span><span>Web Dev</span></div>
+          <div class="sg-item"><span class="sgi-code">UX</span><span>UI/UX</span></div>
+          <div class="sg-item"><span class="sgi-code">PM</span><span>Product Mgmt</span></div>
+          <div class="sg-item"><span class="sgi-code">API</span><span>API/Backend</span></div>
+          <div class="sg-item"><span class="sgi-code">SaaS</span><span>SaaS</span></div>
+        </div>
+      </div>
+      <div class="sl-right">
+        <div class="sbars-col">
+          <h3 class="sbc-title reveal">— DEVELOPMENT</h3>
+          <ul>
+            <li class="sr reveal"><span class="sr-name">Flutter</span><div class="sr-bar"><div class="sr-fill" data-w="92"></div></div><span class="sr-n">92%</span></li>
+            <li class="sr reveal"><span class="sr-name">React / Next.js</span><div class="sr-bar"><div class="sr-fill" data-w="88"></div></div><span class="sr-n">88%</span></li>
+            <li class="sr reveal"><span class="sr-name">Python / Django</span><div class="sr-bar"><div class="sr-fill" data-w="85"></div></div><span class="sr-n">85%</span></li>
+            <li class="sr reveal"><span class="sr-name">Node.js / Express</span><div class="sr-bar"><div class="sr-fill" data-w="82"></div></div><span class="sr-n">82%</span></li>
+            <li class="sr reveal"><span class="sr-name">AWS / Docker</span><div class="sr-bar"><div class="sr-fill" data-w="75"></div></div><span class="sr-n">75%</span></li>
+          </ul>
+        </div>
+        <div class="sbars-col">
+          <h3 class="sbc-title reveal">— DESIGN</h3>
+          <ul>
+            <li class="sr reveal"><span class="sr-name">Figma</span><div class="sr-bar"><div class="sr-fill" data-w="95"></div></div><span class="sr-n">95%</span></li>
+            <li class="sr reveal"><span class="sr-name">UI/UX Design</span><div class="sr-bar"><div class="sr-fill" data-w="93"></div></div><span class="sr-n">93%</span></li>
+            <li class="sr reveal"><span class="sr-name">Product Design</span><div class="sr-bar"><div class="sr-fill" data-w="90"></div></div><span class="sr-n">90%</span></li>
+            <li class="sr reveal"><span class="sr-name">Branding</span><div class="sr-bar"><div class="sr-fill" data-w="88"></div></div><span class="sr-n">88%</span></li>
+            <li class="sr reveal"><span class="sr-name">Illustrator</span><div class="sr-bar"><div class="sr-fill" data-w="85"></div></div><span class="sr-n">85%</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CLIENTS ═══ -->
+<section id="clients" class="s-clients">
+  <div class="container">
+    <div class="stag reveal">
+      <span class="stag-num">04</span>
+      <span class="stag-jp">信頼</span>
+      <span class="stag-en">TRUSTED CLIENTS</span>
+    </div>
+    <div class="clients-head">
+      <h2 class="sec-h reveal">
+        <span class="sh-norm">25 brands.</span>
+        <span class="sh-orange">One vision.</span>
+      </h2>
+      <p class="clients-sub reveal">From bootstrapped startups to enterprise teams across the US, UAE, Europe, Malaysia &amp; India — every collaboration shipped with precision.</p>
+    </div>
+  </div>
+
+  <div class="clients-marquee" aria-hidden="true">
+    <div class="cm-inner">
+      <span>★ TRUSTED · 信頼 · 信頼 · TRUSTED ·</span>
+      <span>★ TRUSTED · 信頼 · 信頼 · TRUSTED ·</span>
+      <span>★ TRUSTED · 信頼 · 信頼 · TRUSTED ·</span>
+      <span>★ TRUSTED · 信頼 · 信頼 · TRUSTED ·</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="clients-grid" id="clientsGrid">
+      <div class="cl-tile" data-cur="01"><span class="clt-n">01</span><span class="clt-name">Modamate</span><span class="clt-tag">E-commerce</span></div>
+      <div class="cl-tile" data-cur="02"><span class="clt-n">02</span><span class="clt-name">Ola Electric</span><span class="clt-tag">Mobility</span></div>
+      <div class="cl-tile cl-lit" data-cur="03"><span class="clt-n">03</span><span class="clt-name">Probiz</span><span class="clt-tag">SaaS</span></div>
+      <div class="cl-tile" data-cur="04"><span class="clt-n">04</span><span class="clt-name">Nimbus Labs</span><span class="clt-tag">Cloud</span></div>
+      <div class="cl-tile" data-cur="05"><span class="clt-n">05</span><span class="clt-name">Aurora Studio</span><span class="clt-tag">Branding</span></div>
+
+      <div class="cl-tile" data-cur="06"><span class="clt-n">06</span><span class="clt-name">Veridian</span><span class="clt-tag">FinTech</span></div>
+      <div class="cl-tile" data-cur="07"><span class="clt-n">07</span><span class="clt-name">Kavari</span><span class="clt-tag">Wellness</span></div>
+      <div class="cl-tile" data-cur="08"><span class="clt-n">08</span><span class="clt-name">Helix</span><span class="clt-tag">HealthTech</span></div>
+      <div class="cl-tile cl-lit" data-cur="09"><span class="clt-n">09</span><span class="clt-name">Lumen</span><span class="clt-tag">EdTech</span></div>
+      <div class="cl-tile" data-cur="10"><span class="clt-n">10</span><span class="clt-name">Northcrest</span><span class="clt-tag">Realty</span></div>
+
+      <div class="cl-tile" data-cur="11"><span class="clt-n">11</span><span class="clt-name">Onyx &amp; Co</span><span class="clt-tag">Luxury</span></div>
+      <div class="cl-tile" data-cur="12"><span class="clt-n">12</span><span class="clt-name">Pixel Forge</span><span class="clt-tag">Studio</span></div>
+      <div class="cl-tile" data-cur="13"><span class="clt-n">13</span><span class="clt-name">Quanta</span><span class="clt-tag">Analytics</span></div>
+      <div class="cl-tile" data-cur="14"><span class="clt-n">14</span><span class="clt-name">Rivulet</span><span class="clt-tag">Travel</span></div>
+      <div class="cl-tile cl-lit" data-cur="15"><span class="clt-n">15</span><span class="clt-name">Solace</span><span class="clt-tag">Mindcare</span></div>
+
+      <div class="cl-tile" data-cur="16"><span class="clt-n">16</span><span class="clt-name">Tessera</span><span class="clt-tag">Logistics</span></div>
+      <div class="cl-tile" data-cur="17"><span class="clt-n">17</span><span class="clt-name">Umbra</span><span class="clt-tag">Media</span></div>
+      <div class="cl-tile" data-cur="18"><span class="clt-n">18</span><span class="clt-name">Vantage</span><span class="clt-tag">Crypto</span></div>
+      <div class="cl-tile" data-cur="19"><span class="clt-n">19</span><span class="clt-name">Wyld</span><span class="clt-tag">F&amp;B</span></div>
+      <div class="cl-tile" data-cur="20"><span class="clt-n">20</span><span class="clt-name">Xeno</span><span class="clt-tag">Gaming</span></div>
+
+      <div class="cl-tile cl-lit" data-cur="21"><span class="clt-n">21</span><span class="clt-name">Yume</span><span class="clt-tag">Fashion</span></div>
+      <div class="cl-tile" data-cur="22"><span class="clt-n">22</span><span class="clt-name">Zenith</span><span class="clt-tag">Aerospace</span></div>
+      <div class="cl-tile" data-cur="23"><span class="clt-n">23</span><span class="clt-name">Atlas</span><span class="clt-tag">Real Estate</span></div>
+      <div class="cl-tile" data-cur="24"><span class="clt-n">24</span><span class="clt-name">Brava</span><span class="clt-tag">Restaurants</span></div>
+      <div class="cl-tile" data-cur="25"><span class="clt-n">25</span><span class="clt-name">Civic</span><span class="clt-tag">GovTech</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS (PINNED HORIZONTAL) ═══ -->
+<section id="testimonials" class="s-testi">
+  <div class="testi-pin" id="testiPin">
+    <div class="testi-head">
+      <div class="stag">
+        <span class="stag-num">05</span>
+        <span class="stag-jp">推薦の言葉</span>
+        <span class="stag-en">TESTIMONIALS</span>
+      </div>
+      <h2 class="testi-h">
+        <span>Words from</span>
+        <span class="th-orange">the people</span>
+        <span class="th-thin">who trusted me.</span>
+      </h2>
+      <p class="testi-sub">Scroll to read →</p>
+    </div>
+
+    <div class="testi-track" id="testiTrack">
+      <article class="tcard">
+        <div class="tc-quote">“</div>
+        <p class="tc-text">Rahuman delivered a product that <em>elevated our entire brand.</em> His eye for detail and command of motion felt like working with a team of ten — not one person.</p>
+        <div class="tc-foot">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#F25623,#171717)">SK</div>
+          <div class="tc-meta">
+            <span class="tc-name">Sarah Kowalski</span>
+            <span class="tc-role">Head of Product · Modamate, NYC</span>
+          </div>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="tcard tcard-lit">
+        <div class="tc-quote">“</div>
+        <p class="tc-text">A product manager who <em>codes, designs, and ships.</em> He turned six months of indecision into a launched MVP in nine weeks. Rare talent.</p>
+        <div class="tc-foot">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#171717,#4D4D4D)">AR</div>
+          <div class="tc-meta">
+            <span class="tc-name">Ahmed Al-Rashid</span>
+            <span class="tc-role">Founder · Aurora Studio, Dubai</span>
+          </div>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="tcard">
+        <div class="tc-quote">“</div>
+        <p class="tc-text">The Flutter app he built for us is <em>the most polished product</em> we've ever shipped. Animations, performance, accessibility — every detail considered.</p>
+        <div class="tc-foot">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#F25623,#ff8a5b)">PV</div>
+          <div class="tc-meta">
+            <span class="tc-name">Priya Venkatesh</span>
+            <span class="tc-role">CTO · Helix HealthTech, Bengaluru</span>
+          </div>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="tcard">
+        <div class="tc-quote">“</div>
+        <p class="tc-text">From wireframes to deployment — <em>one person, one vision, zero compromises.</em> Our conversion rate jumped 38% within a month of launch.</p>
+        <div class="tc-foot">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#4D4D4D,#171717)">LM</div>
+          <div class="tc-meta">
+            <span class="tc-name">Lukas Müller</span>
+            <span class="tc-role">CEO · Nimbus Labs, Berlin</span>
+          </div>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="tcard tcard-lit">
+        <div class="tc-quote">“</div>
+        <p class="tc-text">He <em>thinks like a founder</em> and executes like a senior engineer. Hire him before your competitor does — that's my honest advice.</p>
+        <div class="tc-foot">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#F25623,#171717)">CT</div>
+          <div class="tc-meta">
+            <span class="tc-name">Chen Tan</span>
+            <span class="tc-role">VP Engineering · Lumen, Kuala Lumpur</span>
+          </div>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="tcard">
+        <div class="tc-quote">“</div>
+        <p class="tc-text">Rahuman's <em>design taste is genuinely world-class.</em> The brand identity he crafted now defines our entire visual language across 12 markets.</p>
+        <div class="tc-foot">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#171717,#F25623)">EO</div>
+          <div class="tc-meta">
+            <span class="tc-name">Elena Oduya</span>
+            <span class="tc-role">Creative Director · Onyx &amp; Co, London</span>
+          </div>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="tcard">
+        <div class="tc-quote">“</div>
+        <p class="tc-text">Three years, eleven projects, <em>zero missed deadlines.</em> Calling him a freelancer feels wrong — he's a full studio in one human.</p>
+        <div class="tc-foot">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#ff8a5b,#F25623)">MH</div>
+          <div class="tc-meta">
+            <span class="tc-name">Maya Hernandez</span>
+            <span class="tc-role">Product Lead · Veridian, San Francisco</span>
+          </div>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </article>
+
+      <article class="tcard tcard-lit">
+        <div class="tc-quote">“</div>
+        <p class="tc-text">The kind of collaborator who <em>improves your idea before he builds it.</em> Strategic, kind, ridiculously fast. Already booked him for round two.</p>
+        <div class="tc-foot">
+          <div class="tc-avatar" style="background:linear-gradient(135deg,#4D4D4D,#F25623)">RS</div>
+          <div class="tc-meta">
+            <span class="tc-name">Ravi Subramanian</span>
+            <span class="tc-role">Founder · Probiz Technologies, Bengaluru</span>
+          </div>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </article>
+
+      <div class="testi-end">
+        <div class="te-arrow">→</div>
+        <h3 class="te-h">Want to be next?</h3>
+        <a href="#contact" class="btn-orange">
+          <span>START A PROJECT</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="testi-progress"><div class="tp-fill" id="tpFill"></div></div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE BAND ═══ -->
+<section class="band-marquee" aria-hidden="true">
+  <div class="bm-row">
+    <span>DESIGN</span><span class="bm-dot">●</span>
+    <span>DEVELOP</span><span class="bm-dot">●</span>
+    <span>SHIP</span><span class="bm-dot">●</span>
+    <span class="bm-jp">設計</span><span class="bm-dot">●</span>
+    <span>DESIGN</span><span class="bm-dot">●</span>
+    <span>DEVELOP</span><span class="bm-dot">●</span>
+    <span>SHIP</span><span class="bm-dot">●</span>
+    <span class="bm-jp">開発</span><span class="bm-dot">●</span>
+    <span>DESIGN</span><span class="bm-dot">●</span>
+    <span>DEVELOP</span><span class="bm-dot">●</span>
+    <span>SHIP</span><span class="bm-dot">●</span>
+    <span class="bm-jp">出荷</span><span class="bm-dot">●</span>
+  </div>
+</section>
+
+<!-- ═══ ROLE SPOTLIGHT ═══ -->
+<section id="role" class="s-role">
+  <div class="role-watermark" aria-hidden="true">PM</div>
+  <div class="container">
+    <div class="role-card reveal">
+      <div class="rcard-top">
+        <div class="rcard-status"><span class="rs-dot"></span>CURRENTLY ACTIVE</div>
+        <span class="rcard-idx">06</span>
+      </div>
+      <div class="rcard-co">Probiz Technologies · Bengaluru, India</div>
+      <h2 class="rcard-title">Product<br/>Manager</h2>
+      <div class="rcard-line"></div>
+      <p class="rcard-desc">Leading product strategy and user-centric design decisions — bridging technical execution and business vision to ship products that actually matter.</p>
+      <div class="rcard-chips">
+        <span>Product Strategy</span><span>Roadmapping</span><span>Agile/Scrum</span>
+        <span>Stakeholder Mgmt</span><span>User Research</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="s-contact">
+  <div class="container">
+    <div class="stag reveal">
+      <span class="stag-num">07</span>
+      <span class="stag-jp">お問い合わせ</span>
+      <span class="stag-en">GET IN TOUCH</span>
+    </div>
+    <div class="contact-layout">
+      <div class="cl-left">
+        <h2 class="contact-h reveal">
+          <span>Let's build</span>
+          <span class="ch-orange">something</span>
+          <span class="ch-thin">extraordinary.</span>
+        </h2>
+        <p class="contact-p reveal">Delivering projects across international markets with a focus on quality, scalability and design excellence.</p>
+        <div class="contact-links reveal">
+          <a href="https://github.com/Rahuman122003" target="_blank" class="cl-soc">GitHub ↗</a>
+          <a href="https://dribbble.com/" target="_blank" class="cl-soc">Dribbble ↗</a>
+          <a href="https://linkedin.com/" target="_blank" class="cl-soc">LinkedIn ↗</a>
+        </div>
+      </div>
+      <form class="contact-form reveal" id="cForm" onsubmit="return false;">
+        <div class="cf-row">
+          <div class="cfg"><label>NAME</label><input type="text" placeholder="Your name"/></div>
+          <div class="cfg"><label>EMAIL</label><input type="email" placeholder="your@email.com"/></div>
+        </div>
+        <div class="cfg"><label>SUBJECT</label><input type="text" placeholder="Project inquiry…"/></div>
+        <div class="cfg"><label>MESSAGE</label><textarea rows="5" placeholder="Tell me about your vision…"></textarea></div>
+        <button type="submit" class="btn-orange btn-submit">
+          <span>SEND MESSAGE</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="cf-note">* Portfolio demo form.</p>
+      </form>
+    </div>
+  </div>
+  <footer class="footer">
+    <span>© 2025 Abdul Rahuman</span>
+    <span class="footer-jp">ラフマン</span>
+    <span>Made with precision ✦</span>
+  </footer>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
