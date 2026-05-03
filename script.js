@@ -96,14 +96,12 @@ function initHero() {
     .to('.hero-actions', { opacity: 1, y: 0, duration: 1 }, 1.05)
     .to('.hero-scroll-cue', { opacity: 1, duration: 1 }, 1.3);
 
-  // hero parallax via mouse
-  const heroCore = document.getElementById('heroCore');
+  // hero parallax via mouse — background orbs only, content stays fixed
   document.getElementById('hero').addEventListener('mousemove', e => {
     const rx = (e.clientX / innerWidth - .5) * 2;
     const ry = (e.clientY / innerHeight - .5) * 2;
     gsap.to('.hbg-orb.o1', { x: rx * -36, y: ry * -22, duration: 1.6, ease: 'power2.out' });
     gsap.to('.hbg-orb.o2', { x: rx *  28, y: ry *  18, duration: 1.6, ease: 'power2.out' });
-    gsap.to(heroCore,      { x: rx *  10, y: ry *   6, duration: 1.6, ease: 'power2.out' });
   });
 
   // hero bg scroll parallax
@@ -112,6 +110,176 @@ function initHero() {
     scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
   });
 }
+
+/* ═════════════════════════════════════════════════════════════
+   CROWD CANVAS — Walking peeps in the hero
+   Inspired by https://codepen.io/zadvorsky/pen/xxwbBQV
+   Illustration by https://www.openpeeps.com/
+   ═════════════════════════════════════════════════════════════ */
+(function initCrowdCanvas() {
+  const canvas = document.getElementById('crowdCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const CONFIG = {
+    src: 'open-peeps-sheet.png',
+    rows: 15,
+    cols: 7,
+  };
+
+  // UTILS
+  const randomRange = (min, max) => min + Math.random() * (max - min);
+  const randomIndex = (arr) => randomRange(0, arr.length) | 0;
+  const removeFromArray = (arr, i) => arr.splice(i, 1)[0];
+  const removeItemFromArray = (arr, item) => removeFromArray(arr, arr.indexOf(item));
+  const removeRandomFromArray = (arr) => removeFromArray(arr, randomIndex(arr));
+  const getRandomFromArray = (arr) => arr[randomIndex(arr) | 0];
+
+  // TWEEN FACTORIES
+  const resetPeep = (stage, peep) => {
+    const direction = Math.random() > 0.5 ? 1 : -1;
+    const offsetY = 100 - 250 * gsap.parseEase('power2.in')(Math.random());
+    const startY = stage.height - peep.height + offsetY;
+    let startX, endX;
+
+    if (direction === 1) {
+      startX = -peep.width;
+      endX = stage.width;
+      peep.scaleX = 1;
+    } else {
+      startX = stage.width + peep.width;
+      endX = 0;
+      peep.scaleX = -1;
+    }
+
+    peep.x = startX;
+    peep.y = startY;
+    peep.anchorY = startY;
+
+    return { startX, startY, endX };
+  };
+
+  const normalWalk = (peep, props) => {
+    const { startY, endX } = props;
+    const xDuration = 10;
+    const yDuration = 0.25;
+    const tl = gsap.timeline();
+    tl.timeScale(randomRange(0.5, 1.5));
+    tl.to(peep, { duration: xDuration, x: endX, ease: 'none' }, 0);
+    tl.to(peep, { duration: yDuration, repeat: xDuration / yDuration, yoyo: true, y: startY - 10 }, 0);
+    return tl;
+  };
+
+  const walks = [normalWalk];
+
+  // FACTORY
+  const createPeep = (image, rect) => {
+    const peep = {
+      image,
+      rect: [],
+      width: 0,
+      height: 0,
+      x: 0,
+      y: 0,
+      anchorY: 0,
+      scaleX: 1,
+      walk: null,
+      setRect(r) {
+        peep.rect = r;
+        peep.width = r[2];
+        peep.height = r[3];
+      },
+      render(c) {
+        c.save();
+        c.translate(peep.x, peep.y);
+        c.scale(peep.scaleX, 1);
+        c.drawImage(peep.image, peep.rect[0], peep.rect[1], peep.rect[2], peep.rect[3], 0, 0, peep.width, peep.height);
+        c.restore();
+      },
+    };
+    peep.setRect(rect);
+    return peep;
+  };
+
+  // STATE
+  const img = new Image();
+  const stage = { width: 0, height: 0 };
+  const allPeeps = [];
+  const availablePeeps = [];
+  const crowd = [];
+
+  const createPeeps = () => {
+    const { rows, cols } = CONFIG;
+    const { naturalWidth: w, naturalHeight: h } = img;
+    const total = rows * cols;
+    const rw = w / rows;
+    const rh = h / cols;
+    for (let i = 0; i < total; i++) {
+      allPeeps.push(createPeep(img, [
+        (i % rows) * rw,
+        ((i / rows) | 0) * rh,
+        rw,
+        rh,
+      ]));
+    }
+  };
+
+  const initCrowd = () => {
+    while (availablePeeps.length) {
+      addPeepToCrowd().walk.progress(Math.random());
+    }
+  };
+
+  const addPeepToCrowd = () => {
+    const peep = removeRandomFromArray(availablePeeps);
+    const walk = getRandomFromArray(walks)(peep, resetPeep(stage, peep))
+      .eventCallback('onComplete', () => {
+        removePeepFromCrowd(peep);
+        addPeepToCrowd();
+      });
+    peep.walk = walk;
+    crowd.push(peep);
+    crowd.sort((a, b) => a.anchorY - b.anchorY);
+    return peep;
+  };
+
+  const removePeepFromCrowd = (peep) => {
+    removeItemFromArray(crowd, peep);
+    availablePeeps.push(peep);
+  };
+
+  const render = () => {
+    canvas.width = stage.width * devicePixelRatio;
+    canvas.height = stage.height * devicePixelRatio;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+    crowd.forEach(p => p.render(ctx));
+    ctx.restore();
+  };
+
+  const resize = () => {
+    stage.width = canvas.clientWidth;
+    stage.height = canvas.clientHeight;
+    crowd.forEach(p => { if (p.walk) p.walk.kill(); });
+    crowd.length = 0;
+    availablePeeps.length = 0;
+    availablePeeps.push(...allPeeps);
+    initCrowd();
+  };
+
+  const init = () => {
+    createPeeps();
+    resize();
+    gsap.ticker.add(render);
+  };
+
+  img.onload = init;
+  img.src = CONFIG.src;
+
+  window.addEventListener('resize', resize);
+})();
 
 /* ─── NAV STATE ──────────────────────────────────────────────── */
 ScrollTrigger.create({
@@ -215,18 +383,8 @@ gsap.to('.role-watermark', {
   scrollTrigger: { trigger: '#role', start: 'top bottom', end: 'bottom top', scrub: 2 }
 });
 
-/* ─── MAGNETIC BUTTONS ───────────────────────────────────────── */
-document.querySelectorAll('.btn-orange, .btn-outline').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    const x = e.clientX - r.left - r.width / 2;
-    const y = e.clientY - r.top  - r.height / 2;
-    gsap.to(btn, { x: x * .25, y: y * .35, duration: .4, ease: 'power2.out' });
-  });
-  btn.addEventListener('mouseleave', () => {
-    gsap.to(btn, { x: 0, y: 0, duration: .6, ease: 'elastic.out(1, .5)' });
-  });
-});
+/* ─── BUTTONS (static — no magnetic follow) ──────────────────── */
+/* Magnetic follow removed — buttons stay fixed in place */
 
 /* ─── ANCHOR SMOOTH SCROLL ───────────────────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
